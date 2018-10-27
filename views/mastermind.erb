@@ -1,6 +1,25 @@
 <html>
   <head></head>
+  
   <body>
-    <p>Here is where we play mastermind!</p>
+    <h1>Here is where we play mastermind!</h1>
+
+    <% if request.get? %>
+      <form method='post'>
+        <p>Which part would you like to play?</p>
+        <p><input type='radio' name='player' value='master'> Code Master</p>
+        <p><input type='radio' name='player' value='breaker'> Code Breaker <br /></p>
+        <input type='submit' value='Play Mastermind'>
+      </form>
+    <% elsif request.post? && params[:player] == 'master' %>
+      <p>This is the spot where you enter your code!</p>
+    <% end %>
+
+    <p>This is where the mastermind board shows up!</p>
+
+    <% if request.post? && params[:player] == 'breaker' %>
+      <p>This is where you enter your guesses!</p>
+    <% end %>
+
   </body>
 </html>

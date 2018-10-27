@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sinatra/reloader'
+require 'json'
 
 get '/' do
   redirect to('/index')
@@ -10,5 +11,9 @@ get '/index' do
 end
 
 get '/mastermind' do
+  erb :mastermind
+end
+
+post '/mastermind' do
   erb :mastermind
 end
