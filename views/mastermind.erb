@@ -1,9 +1,12 @@
 <html>
-  <head></head>
+  <head>
+    <title>MASTERMIND</title>
+  </head>
   
   <body>
-    <h1>Here is where we play mastermind!</h1>
+    <h1>MASTERMIND</h1>
 
+    <% # Initial form for player to pick a role. %>
     <% if request.get? %>
       <form method='post'>
         <p>Which part would you like to play?</p>
@@ -11,14 +14,29 @@
         <p><input type='radio' name='player' value='breaker'> Code Breaker <br /></p>
         <input type='submit' value='Play Mastermind'>
       </form>
-    <% elsif request.post? && params[:player] == 'master' %>
-      <p>This is the spot where you enter your code!</p>
     <% end %>
 
-    <p>This is where the mastermind board shows up!</p>
+    <% # Only appears first time for player to set code. %>
+    <% if request.post? && params[:player] == 'master' %>
+      <p>This is the spot where you enter your code!</p>
+      <form method='post'>
+        <input type='hidden' name='player' value='master'>
+        <input type='submit' value='Set Code'>
+      </form>
+    <% end %>
 
+    <% # Displays board output. %>
+    <% if request.post? %>
+      <p>This is where the mastermind board shows up!</p>
+    <% end %>
+
+    <% # Only displays for player guessing numbers %>
     <% if request.post? && params[:player] == 'breaker' %>
       <p>This is where you enter your guesses!</p>
+      <form method='post'>
+        <input type='hidden' name='player' value='breaker'>
+        <input type='submit' value='Submit'>
+      </form>
     <% end %>
 
   </body>
