@@ -21,7 +21,7 @@
       <p>This is the spot where you enter your code!</p>
       <form method='post'>
         <input type='hidden' name='player' value='master'>
-        <input type='hidden' name='game' value=<% params[:game] %>>
+        <input type='hidden' name='game' value=<%= YAML::dump(game) %>>
         <input type='submit' value='Set Code'>
       </form>
     <% end %>
@@ -29,6 +29,8 @@
     <% # Displays board output. %>
     <% if request.post? %>
       <p>This is where the mastermind board shows up!</p>
+      <%= secret_code %>
+      <%= is_game %>
     <% end %>
 
     <% # Only displays for player guessing numbers %>
@@ -36,7 +38,7 @@
       <p>This is where you enter your guesses!</p>
       <form method='post'>
         <input type='hidden' name='player' value='<%= player %>'>
-        <input type='hidden' name='game' value='<%= game %>'>
+        <input type='hidden' name='game' value='<%= YAML::dump(game) %>'>
         <input type='submit' value='Submit'>
       </form>
     <% end %>
