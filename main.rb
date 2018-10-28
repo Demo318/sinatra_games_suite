@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sinatra/reloader'
+require_relative 'lib/mastermind/mastermind.rb'
 
 get '/' do
   redirect to('/index')
@@ -14,5 +15,7 @@ get '/mastermind' do
 end
 
 post '/mastermind' do
-  erb :mastermind
+  params[:game].nil? ? game = Mastermind.new : game = params[:game]
+  player = params[:player]
+  erb :mastermind, :locals => { :game => game, :player => player }
 end
