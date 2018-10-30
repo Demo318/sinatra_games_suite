@@ -10,17 +10,17 @@
     <% if request.get? %>
       <form method='post'>
         <p>Which part would you like to play?</p>
-        <p><input type='radio' name='player' value='master'> Code Master</p>
-        <p><input type='radio' name='player' value='breaker'> Code Breaker<br /></p>
+        <p><input type='radio' name='player_role' value='master'> Code Master</p>
+        <p><input type='radio' name='player_role' value='breaker'> Code Breaker<br /></p>
         <input type='submit' value='Play Mastermind'>
       </form>
     <% end %>
 
     <% # Only appears first time for player to set code. %>
-    <% if request.post? && player == 'master' && game.scret_code.nil? %>
+    <% if request.post? && player_role == 'master' && game.scret_code.nil? %>
       <p>This is the spot where you enter your code!</p>
       <form method='post'>
-        <input type='hidden' name='player' value='master'>
+        <input type='hidden' name='player_role' value='master'>
         <input type='hidden' name='game' value=<%= YAML::dump(game) %>>
         <input type='submit' value='Set Code'>
       </form>
@@ -32,7 +32,7 @@
     <% end %>
 
     <% # Only displays for player guessing numbers %>
-    <% if request.post? && player == 'breaker' %>
+    <% if request.post? && player_role == 'breaker' %>
       <p>This is where you enter your guesses!</p>
       <form method='post'>
         <% # User has field to enter four characters (numbers) %>
@@ -45,7 +45,7 @@
         <% # end %>
         <% # Updated gameboard is displayed %>
         
-        <input type='hidden' name='player' value='<%= player %>'>
+        <input type='hidden' name='player_role' value='<%= player_role %>'>
         <input type='hidden' name='game' value='<%= YAML::dump(game) %>'>
         <input type='submit' value='Submit'>
       </form>
