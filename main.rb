@@ -16,8 +16,14 @@ get '/mastermind' do
 end
 
 post '/mastermind' do
-  params[:game].nil? ? game = Mastermind.new : game = YAML::load(params[:game])
-  is_game = params[:game].nil?
-  player = params[:player]
-  erb :mastermind, :locals => { :game => game, :is_game => is_game, :secret_code => game.secret_code, :player => player }
+  player_role = params[:player_role]
+  if player_role == 'breaker'
+    params[:game].nil? ? game = Mastermind.new : game = YAML::load(params[:game])
+    erb :mastermind, :locals => { :game => game, :player_role => player_role }
+  else
+    # when player is code master
+    # if game.secret_code already exists, code is entered
+    # else show the gameboard of computer guessing
+  end
+  
 end

@@ -11,13 +11,13 @@
       <form method='post'>
         <p>Which part would you like to play?</p>
         <p><input type='radio' name='player' value='master'> Code Master</p>
-        <p><input type='radio' name='player' value='breaker'> Code Breaker <br /></p>
+        <p><input type='radio' name='player' value='breaker'> Code Breaker<br /></p>
         <input type='submit' value='Play Mastermind'>
       </form>
     <% end %>
 
     <% # Only appears first time for player to set code. %>
-    <% if request.post? && params[:player] == 'master' %>
+    <% if request.post? && player == 'master' && game.scret_code.nil? %>
       <p>This is the spot where you enter your code!</p>
       <form method='post'>
         <input type='hidden' name='player' value='master'>
@@ -29,14 +29,23 @@
     <% # Displays board output. %>
     <% if request.post? %>
       <p>This is where the mastermind board shows up!</p>
-      <%= secret_code %>
-      <%= is_game %>
     <% end %>
 
     <% # Only displays for player guessing numbers %>
     <% if request.post? && player == 'breaker' %>
       <p>This is where you enter your guesses!</p>
       <form method='post'>
+        <%
+        # User has field to enter four characters (numbers)
+        # Those are validated as an acceptable input
+        # If invalid input
+        #   Message is displayed to user that input is invalid.
+        # Else if valid input
+        #   Message is displayed to user of how close he was.
+        #   Game results are displayed if game_over?
+        # end
+        # Updated gameboard is displayed
+        %>
         <input type='hidden' name='player' value='<%= player %>'>
         <input type='hidden' name='game' value='<%= YAML::dump(game) %>'>
         <input type='submit' value='Submit'>
