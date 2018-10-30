@@ -44,7 +44,9 @@
         <% #   Game results are displayed if game_over? %>
         <% # end %>
         <% # Updated gameboard is displayed %>
-        
+        <% ['guess_one', 'guess_two', 'guess_three', 'guess_four'].each do |key| %>
+          <input type='number' name='<%= key %>' min='1' max='6' maxlength='1'>
+        <% end %><br />
         <input type='hidden' name='player_role' value='<%= player_role %>'>
         <input type='hidden' name='game' value='<%= YAML::dump(game) %>'>
         <input type='submit' value='Submit'>
