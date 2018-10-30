@@ -35,17 +35,16 @@
     <% if request.post? && player == 'breaker' %>
       <p>This is where you enter your guesses!</p>
       <form method='post'>
-        <%
-        # User has field to enter four characters (numbers)
-        # Those are validated as an acceptable input
-        # If invalid input
-        #   Message is displayed to user that input is invalid.
-        # Else if valid input
-        #   Message is displayed to user of how close he was.
-        #   Game results are displayed if game_over?
-        # end
-        # Updated gameboard is displayed
-        %>
+        <% # User has field to enter four characters (numbers) %>
+        <% # Those are validated as an acceptable input %>
+        <% # If invalid input %>
+        <% #   Message is displayed to user that input is invalid. %>
+        <% # Else if valid input %>
+        <% #   Message is displayed to user of how close he was. %>
+        <% #   Game results are displayed if game_over? %>
+        <% # end %>
+        <% # Updated gameboard is displayed %>
+        
         <input type='hidden' name='player' value='<%= player %>'>
         <input type='hidden' name='game' value='<%= YAML::dump(game) %>'>
         <input type='submit' value='Submit'>
