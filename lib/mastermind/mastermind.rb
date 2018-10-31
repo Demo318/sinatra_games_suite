@@ -2,11 +2,8 @@ class Mastermind
   attr_reader :secret_code
 
   def initialize(secret_code = [])
-    if secret_code.empty?
-      @secret_code = new_secret_code
-    else
-      @secret_code = secret_code
-    end
+    @secret_code = secret_code
+    @secret_code = new_secret_code if secret_code.empty?
   end
 
   private
